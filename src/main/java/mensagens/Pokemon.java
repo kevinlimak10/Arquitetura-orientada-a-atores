@@ -39,7 +39,7 @@ public class Pokemon{
     @Override
     public String toString(){
         return "nome: "+ nome +
-                "afinidade" + afinidade +
-                "nivel " + nivel;
+                " afinidade " + afinidade +
+                " nivel " + nivel;
     }
 }

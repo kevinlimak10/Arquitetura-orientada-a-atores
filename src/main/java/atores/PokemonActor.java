@@ -26,14 +26,18 @@ public class PokemonActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
+
         return receiveBuilder().//
-            matchEquals(Pokemon.class, pokemon ->{
-                chamaPokedex();
-        }).build();
+        match(
+                Pokemon.class,
+                s -> dizerQuemSou())
+                .matchAny(o -> log.info("received unknown message"))//
+//            matchEquals(Pokemon.class, pokemon ->{
+//                chamaPokedex();
+        .build();
     }
 
-    public void chamaPokedex() throws Exception {
-        log.info("Olá eu sou o ");
-        pokedexActor.tell(pokemon,getSelf());
+    public void dizerQuemSou() {
+        log.info(pokemon.toString());
     }
 }

@@ -1,6 +1,7 @@
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import atores.PokedexActor;
 import atores.PokemonActor;
 import mensagens.Pokemon;
 
@@ -10,8 +11,8 @@ public class Start {
         ActorSystem system = ActorSystem.create("SistemaPrincipal");
 
         Pokemon poke = new Pokemon(1,"Bulbasauro","mato");
-        ActorRef pokemon = system.actorOf(Props.create(PokemonActor.class,poke),"PokemonActor");
+        ActorRef pokedex = system.actorOf(Props.create(PokedexActor.class,poke),"PokedexActor");
 
-        pokemon.tell(poke,ActorRef.noSender());
+        pokedex.tell(poke,ActorRef.noSender());
     }
 }
