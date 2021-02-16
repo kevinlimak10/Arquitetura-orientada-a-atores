@@ -2,14 +2,23 @@ package mensagens;
 
 public class Pokemon{
     private int nivel;
-
+    private Pokemon evolucao;
     private String nome;
     private String afinidade;
 
-    public Pokemon(int nivel, String nome, String afinidade) {
+    public Pokemon(int nivel, String nome, String afinidade,Pokemon evolucao) {
         this.nivel = nivel;
         this.nome = nome;
         this.afinidade = afinidade;
+        this.evolucao = evolucao;
+    }
+
+    public Pokemon getEvolucao() {
+        return evolucao;
+    }
+
+    public void setEvolucao(Pokemon evolucao) {
+        this.evolucao = evolucao;
     }
 
     public int getNivel() {

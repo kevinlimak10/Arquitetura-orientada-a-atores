@@ -10,9 +10,15 @@ public class Start {
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("SistemaPrincipal");
 
-        Pokemon poke = new Pokemon(1,"Bulbasauro","mato");
-        ActorRef pokedex = system.actorOf(Props.create(PokedexActor.class,poke),"PokedexActor");
+        Pokemon pokeVenusaur = new Pokemon(32,"Venusaur","mato",null);
+        Pokemon pokeIvysaur = new Pokemon(16,"Ivysaur","mato",pokeVenusaur);
 
-        pokedex.tell(poke,ActorRef.noSender());
+        Pokemon pokeBulba = new Pokemon(1,"bulbasaur","mato",pokeIvysaur);
+        Pokemon pokePiggeoto = new Pokemon(2,"Piggeoto","vento",null);
+
+        ActorRef pokedex = system.actorOf(Props.create(PokedexActor.class),"PokedexActor");
+
+        pokedex.tell(pokePiggeoto,ActorRef.noSender());
+        pokedex.tell(pokeBulba,ActorRef.noSender());
     }
 }

@@ -11,33 +11,24 @@ public class PokemonActor extends AbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 
-    private ActorRef pokedexActor;
-
-    private Pokemon pokemon;
-
-    @Override
-    public void preStart() {
-        pokedexActor = getContext().actorOf(Props.create(PokedexActor.class,pokemon),"pokedexActor");
-    }
-
-    public PokemonActor(Pokemon pokemon){
-        this.pokemon = pokemon;
-    }
-
     @Override
     public Receive createReceive() {
 
         return receiveBuilder().//
         match(
                 Pokemon.class,
-                s -> dizerQuemSou())
-                .matchAny(o -> log.info("received unknown message"))//
-//            matchEquals(Pokemon.class, pokemon ->{
-//                chamaPokedex();
+                pokemon -> dizerQuemSou(pokemon)
+        )
+                    .matchAny(o -> log.info("received unknown message"))//
         .build();
     }
 
-    public void dizerQuemSou() {
+    public void dizerQuemSou(Pokemon pokemon) {
+        try {
+            Thread.sleep(pokemon.getNivel() * 1000);
+        } catch (InterruptedException e) {
+            log.info("Não consegui dormir");
+        }
         log.info(pokemon.toString());
     }
 }
