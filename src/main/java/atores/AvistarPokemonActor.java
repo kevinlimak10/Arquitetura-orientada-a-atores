@@ -18,7 +18,7 @@ public class AvistarPokemonActor extends AbstractActor {
 
 
     public AvistarPokemonActor(boolean cluster) {
-        this.pokedex = cluster ? criandoClusterRoteador() : criandoBuildLocal();
+        this.pokedex = cluster ? criandoBuildLocal() :criandoClusterRoteador();
     }
 
 

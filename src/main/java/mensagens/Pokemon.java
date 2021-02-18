@@ -1,12 +1,21 @@
 package mensagens;
 
-public class Pokemon{
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import serializacao.CborSerializable;
+
+public class Pokemon implements CborSerializable {
+    @JsonProperty("nivel")
     private int nivel;
+    @JsonProperty("evolucao")
     private Pokemon evolucao;
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("afinidade")
     private String afinidade;
 
-    public Pokemon(int nivel, String nome, String afinidade,Pokemon evolucao) {
+    @JsonCreator
+    public Pokemon( int nivel,String nome,String afinidade,Pokemon evolucao) {
         this.nivel = nivel;
         this.nome = nome;
         this.afinidade = afinidade;

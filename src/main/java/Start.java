@@ -14,11 +14,11 @@ public class Start {
         Pokemon pokeIvysaur = new Pokemon(16,"Ivysaur","mato",pokeVenusaur);
 
         Pokemon pokeBulba = new Pokemon(1,"bulbasaur","mato",pokeIvysaur);
-        Pokemon pokePiggeoto = new Pokemon(2,"Piggeoto","vento",null);
+        Pokemon pokePidgeot = new Pokemon(20,"Pidgeot","vento",null);
 
         ActorRef pokedex = system.actorOf(Props.create(PokedexActor.class),"PokedexActor");
 
-        pokedex.tell(pokePiggeoto,ActorRef.noSender());
+        pokedex.tell(pokePidgeot,ActorRef.noSender());
         pokedex.tell(pokeBulba,ActorRef.noSender());
     }
 }

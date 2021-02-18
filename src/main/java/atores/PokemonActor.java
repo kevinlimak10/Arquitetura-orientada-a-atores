@@ -3,6 +3,7 @@ package atores;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
+import akka.cluster.Cluster;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import mensagens.Pokemon;
@@ -17,7 +18,10 @@ public class PokemonActor extends AbstractActor {
         return receiveBuilder().//
         match(
                 Pokemon.class,
-                pokemon -> dizerQuemSou(pokemon)
+                pokemon -> {
+                    dizerQuemSou(pokemon);
+                    if(pokemon.getEvolucao() != null) getSender().tell(pokemon.getEvolucao(),getSelf());
+                }
         )
                     .matchAny(o -> log.info("received unknown message"))//
         .build();
@@ -29,6 +33,6 @@ public class PokemonActor extends AbstractActor {
         } catch (InterruptedException e) {
             log.info("Não consegui dormir");
         }
-        log.info(pokemon.toString());
+        System.out.println(getSelf().path() +":" +pokemon.toString());
     }
 }

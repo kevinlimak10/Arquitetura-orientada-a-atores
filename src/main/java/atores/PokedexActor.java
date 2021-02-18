@@ -29,10 +29,9 @@ public class PokedexActor extends AbstractActor {
     }
 
     private void botarDescricaoPokemon(Pokemon pokemon) {
-        log.info(getSelf().path() +": Quem é esse pokemon?");
+        log(": Quem é esse pokemon?" + " e quem me chamou foi: " + getSender().path());
         ActorRef pokemonActor = getContext().actorOf(Props.create(PokemonActor.class),pokemon.getNome());
         pokemonActor.tell(pokemon,getSelf());
-        if(pokemon.getEvolucao() != null) getSelf().tell(pokemon.getEvolucao(),getSender());
     }
 
     @Override
